@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dermato_Goal_RT</fullName>
+    <active>true</active>
+    <label>Dermato Goal RT</label>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Annuel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hebdomadaire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Journalier</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Mensuel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trimestriel</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

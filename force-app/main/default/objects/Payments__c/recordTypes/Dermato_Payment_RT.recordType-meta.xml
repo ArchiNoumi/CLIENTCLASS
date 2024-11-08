@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dermato_Payment_RT</fullName>
+    <active>true</active>
+    <label>Dermato Payment RT</label>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Acide hyaluronique</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autre</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Botox</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Botox pour hyperhydrose %28transpiration exessive%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultation</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Cryolipolyse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Epilation laser grande surface%28jambe entiere%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Epilation laser petite surface</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Epilation laser surface moyenne%28demi-jambe%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fil tenseur %28prix par fil%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nettoyage de peau %28achnee%2C pores dilatees%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peeling BPEEL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peeling Superficilel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peeling moyen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peeling profond</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self-regenering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skintinghtening%28laser YAG%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vergetures%3A brazapeel</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

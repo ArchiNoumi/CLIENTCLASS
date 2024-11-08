@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_it_salaries_type_expense</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Type__c, &quot;Salaries&quot;) &amp;&amp;  Concerne__c  = &quot;&quot;</errorConditionFormula>
+    <errorMessage>You must choose a contact for Salaries expense.</errorMessage>
+</ValidationRule>

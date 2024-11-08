@@ -1,0 +1,13 @@
+<template>
+    <button
+        class="slds-button slds-button_brand slds-button_stretch"
+        disabled={loading}
+        onclick={handleClick}
+    >
+        <slot></slot>
+    </button>
+
+    <template if:true={loading}>
+        <lightning-spinner alernative-text="loading" size="medium"></lightning-spinner>
+    </template>
+</template>

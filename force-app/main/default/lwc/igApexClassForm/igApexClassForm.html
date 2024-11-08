@@ -1,0 +1,316 @@
+<template>
+    <div class="slds-grid slds-grid_vertical" style="gap: 1rem">
+        <div class="slds-col slds-border_bottom">
+            <div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="class_name_field">
+                        <abbr class="slds-required" title="required">* </abbr>Class Name
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="class_name_field"
+                            name="class_name_field"
+                            placeholder="Name of the class"
+                            required
+                            class="slds-input"
+                            value={className}
+                            onchange={handleFormInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="class_accessibility_field">
+                        Class Accessibility
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select
+                                class="slds-select"
+                                id="class_accessibility_field"
+                                name="class_accessibility_field"
+                                value={classAccessibility}
+                                onchange={handleFormInputChange}
+                            >
+                                <option value=""></option>
+                                <template for:each={listAccessibilities} for:item="accessibility">
+                                    <option key={accessibility} value={accessibility}>
+                                        {accessibility}
+                                    </option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-border_top">
+            <div>
+                <span class="slds-badge"> Section: <em>Attributes</em> </span>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="attribute_name_field">
+                        <abbr class="slds-required" title="required">* </abbr>Attribute name
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="attribute_name_field"
+                            name="attribute_name_field"
+                            placeholder="Name of the attriube"
+                            required
+                            class="slds-input"
+                            value={currentAttribute.name}
+                            onchange={handleFormInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="attribute_type_field">
+                        <abbr class="slds-required" title="required">* </abbr>Attribute type
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="attribute_type_field"
+                            name="attribute_type_field"
+                            placeholder="Attribute type"
+                            required
+                            class="slds-input"
+                            value={currentAttribute.type}
+                            onchange={handleFormInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="attribute_value_field">
+                        Attribute value
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="attribute_value_field"
+                            name="attribute_value_field"
+                            placeholder="Attribute value"
+                            class="slds-input"
+                            value={currentAttribute.value}
+                            onchange={handleFormInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="attribute_accessibility_field">
+                        Attribute Accessibility
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select
+                                class="slds-select"
+                                id="attribute_accessibility_field"
+                                name="attribute_accessibility_field"
+                                value={currentAttribute.accessibility}
+                                onchange={handleFormInputChange}
+                            >
+                                <option value=""></option>
+                                <template for:each={listAccessibilities} for:item="accessibility">
+                                    <option key={accessibility} value={accessibility}>
+                                        {accessibility}
+                                    </option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element slds-p-vertical_small">
+                    <div class="slds-form-element__control">
+                        <div class="slds-checkbox">
+                            <input
+                                type="checkbox"
+                                id="static_attribute_field"
+                                name="static_attribute_field"
+                                checked={currentAttribute.isStatic}
+                                onchange={handleFormInputChange}
+                            />
+                            <label class="slds-checkbox__label" for="static_attribute_field">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label">Static Attribute</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="slds-button slds-button_outline-brand" onclick={handlAddAttribute}>
+                    Add Attribute
+                    <svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <template if:true={areAttributesAvailable}>
+            <div class="slds-col">
+                <div>
+                    <table
+                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                        aria-label="Example table of Opportunities with vertical borders"
+                    >
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Opportunity Name">Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Account Name">Actions</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={attributes} for:item="attribute">
+                                <tr
+                                    key={attribute.id}
+                                    data-id={attribute.id}
+                                    class="slds-hint-parent"
+                                >
+                                    <td>
+                                        <div class="slds-truncate">{attribute.name}</div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate">
+                                            <button
+                                                class="slds-button slds-button_icon slds-button_icon-brand"
+                                                title="clear"
+                                                onclick={handleDeleteAttribute}
+                                            >
+                                                <svg class="slds-button__icon" aria-hidden="true">
+                                                    <use
+                                                        xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"
+                                                    ></use>
+                                                </svg>
+                                                <span class="slds-assistive-text">clear</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </template>
+
+        <div class="slds-col slds-border_top">
+            <div>
+                <span class="slds-badge"> Section: <em>Methods</em> </span>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="method_name_field">
+                        <abbr class="slds-required" title="required">* </abbr>Method name
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="method_name_field"
+                            name="method_name_field"
+                            placeholder="Method name"
+                            required
+                            class="slds-input"
+                            value={currentMethod.name}
+                            onchange={handleFormInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="method_body_field">
+                        <abbr class="slds-required" title="required">* </abbr> Method body
+                    </label>
+                    <div class="slds-form-element__control">
+                        <textarea
+                            id="method_body_field"
+                            name="method_body_field"
+                            class="slds-textarea"
+                            required
+                            placeholder="Method body here"
+                            value={currentMethod.body}
+                            onchange={handleFormInputChange}
+                        ></textarea>
+                    </div>
+                </div>
+
+                <button class="slds-button slds-button_outline-brand" onclick={handleAddMethod}>
+                    Add Method
+                    <svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <template if:true={areMethodsAvailable}>
+            <div class="slds-col">
+                <div>
+                    <table
+                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                    >
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Opportunity Name">Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Account Name">Actions</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={methods} for:item="method">
+                                <tr key={method.id} data-id={method.id} class="slds-hint-parent">
+                                    <td>
+                                        <div class="slds-truncate">{method.name}</div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate">
+                                            <button
+                                                class="slds-button slds-button_icon slds-button_icon-brand"
+                                                title="clear"
+                                                onclick={handleDeleteMethod}
+                                            >
+                                                <svg class="slds-button__icon" aria-hidden="true">
+                                                    <use
+                                                        xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"
+                                                    ></use>
+                                                </svg>
+                                                <span class="slds-assistive-text">clear</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </template>
+
+        <div class="slds-col">
+            <template if:true={isAlertMessageAvailable}>
+                <c-ig-alert-box
+                    message={alertMessage.message}
+                    type={alertMessage.type}
+                    close-box={handleClearAlertMessage}
+                ></c-ig-alert-box>
+            </template>
+        </div>
+
+        <div class="slds-col slds-p-vertical_small">
+            <c-ig-button loading={isLoading} onclick={handleSaveApexClass}>Submit</c-ig-button>
+        </div>
+    </div>
+</template>

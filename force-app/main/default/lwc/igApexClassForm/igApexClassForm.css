@@ -1,0 +1,9 @@
+/* component css ---------------- */
+.component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    background-color: var(--white);
+    max-width: 100%;
+    padding: var(--spacing);
+}

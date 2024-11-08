@@ -1,0 +1,22 @@
+<template>
+    <div
+        class="component slds-var-p-around_small"
+        style="background-color: var(--slds-g-color-neutral-base-100)"
+    >
+        <div class="slds-grid slds-grid_vertical" style="gap: 1rem">
+            <div class="slds-col">
+                <div class="slds-box">
+                    <h3 class="slds-text-title_caps">Apex class generator</h3>
+                </div>
+            </div>
+
+            <div class="slds-col">
+                <div class="slds-box">
+                    <c-ig-apex-class-form
+                        save-apex-class={handleCreateApexCalss}
+                    ></c-ig-apex-class-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

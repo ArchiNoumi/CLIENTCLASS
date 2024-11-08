@@ -1,0 +1,484 @@
+/* variables ------------------ */
+:root {
+  --yellow: goldenrod;
+  --green: mediumseagreen;
+  --red: indianred;
+  --orange: #ff6347;
+  --black: #060606;
+  --white: #fff;
+  --grey-light: #a3a7a9;
+  --grey-dark: #131418;
+  --primary: var(--orange);
+  --secondary: var(--white);
+  --success: var(--green);
+  --warning: var(--yellow);
+  --danger: var(--red);
+  --dark: var(--black);
+  --breakpoint-xl: 1440px;
+  --spacing: 1rem;
+}
+
+/* overwrite browser style -------------------- */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--white);
+}
+::-webkit-scrollbar {
+  background-color: var(--grey-dark);
+  height: 7px;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--grey-light);
+}
+
+body {
+  color: var(--grey-dark);
+  width: 100vw;
+  height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+label {
+  cursor: pointer;
+}
+
+/* custom style ---------------------- */
+.container {
+  margin: auto;
+  padding: 0 2em;
+  height: 100%;
+  width: 100%;
+  max-width: var(--breakpoint-xl);
+}
+
+hr.divider {
+  border-color: rgba(51, 51, 51, 0.1);
+}
+
+.title {
+  position: relative;
+  color: var(--primary);
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: var(--spacing);
+  width: fit-content;
+}
+.title::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: calc(-1 * var(--spacing));
+  border-right: 0.7em solid;
+  height: 1em;
+}
+
+/* button ------------------ */
+.btn {
+  background-color: var(--white);
+  padding: var(--spacing);
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid;
+}
+.btn:disabled {
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+.btn--block {
+  width: 100%;
+}
+.btn--primary {
+  background: var(--primary);
+  color: var(--white);
+  border: 1px solid var(--primary);
+}
+.btn--primary:hover {
+  color: var(--primary);
+  background-color: var(--white);
+}
+.btn--secondary {
+  background: var(--secondary);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn--secondary:hover {
+  color: var(--secondary);
+  background-color: var(--primary);
+}
+
+/* form control ------------- */
+.form_control {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+.form_label {
+  position: relative;
+  text-transform: capitalize;
+  width: fit-content;
+  margin-bottom: 0.5em;
+}
+.form_label.required::after {
+  content: "*";
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: var(--danger);
+  font-weight: bold;
+}
+.form_input {
+  background-color: transparent;
+  border: 1px solid var(--grey-light);
+  border-radius: 0px;
+  color: var(--grey-dark);
+  width: 100%;
+  padding: var(--spacing);
+  outline: none;
+}
+.form_input:focus {
+  border-color: var(--primary);
+}
+
+input.form_input.custom_checkbox[type="checkbox"] {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+input.form_input.custom_checkbox[type="checkbox"]::before {
+  position: absolute;
+  inset: 0;
+}
+
+input.form_input.custom_checkbox[type="checkbox"]::before {
+  content: "⨯";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: bold;
+}
+
+input.form_input.custom_checkbox[type="checkbox"]:checked::before {
+  content: "✓";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: bold;
+}
+
+/* alert -------------- */
+.alert {
+  background-color: var(--success);
+  padding: 10px;
+  color: var(--white);
+  font-size: 0.9em;
+}
+.alert[data-type="error"] {
+  background-color: var(--danger);
+}
+.alert_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.alert_header button[type="button"] {
+  color: inherit;
+  background-color: inherit;
+  font-weight: inherit;
+  border: none;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+.alert_header button[type="button"]:hover {
+  border: 1px solid;
+}
+.alert_body p {
+  text-align: center;
+}
+
+/* tooltip -------------- */
+*[data-tooltip] {
+  position: relative;
+}
+*[data-tooltip]:hover::before,
+*[data-tooltip-position="top"]:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: -50%;
+  bottom: calc(100% + 15px);
+  padding: 5px;
+  background-color: var(--white);
+  color: var(--grey-dark);
+  border: 1px solid;
+  border-radius: 5px;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 15px;
+  width: fit-content;
+}
+*[data-tooltip]:hover::after,
+*[data-tooltip-position="top"]:hover::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 10px);
+  top: -15px;
+  border-top: 10px solid var(--grey-dark);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+*[data-tooltip-position="left"]:hover::before {
+  top: unset;
+  left: unset;
+  right: calc(100% + 15px);
+  bottom: unset;
+}
+*[data-tooltip-position="left"]:hover::after {
+  top: calc(50% - 10px);
+  left: -15px;
+  right: unset;
+  bottom: unset;
+  border-left: 10px solid var(--grey-dark);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: unset;
+}
+
+*[data-tooltip-position="bottom"]:hover::before {
+  top: calc(100% + 15px);
+  left: unset;
+  right: unset;
+  bottom: unset;
+}
+*[data-tooltip-position="bottom"]:hover::after {
+  top: unset;
+  left: calc(50% - 10px);
+  right: unset;
+  bottom: -15px;
+  border-bottom: 10px solid var(--grey-dark);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: unset;
+}
+
+*[data-tooltip-position="right"]:hover::before {
+  top: unset;
+  left: calc(100% + 15px);
+  right: unset;
+  bottom: unset;
+}
+*[data-tooltip-position="right"]:hover::after {
+  top: calc(50% - 10px);
+  left: unset;
+  right: -15px;
+  bottom: unsed;
+  border-right: 10px solid var(--grey-dark);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: unset;
+}
+
+/* modal ---------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background-color: rgba(51, 51, 51, 0.5);
+  min-height: 100vh;
+  min-width: 100vw;
+  max-height: 100vh;
+  max-width: 100vh;
+  overflow: auto;
+  z-index: 999999;
+}
+.modal.modal_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .modal_container {
+  background-color: var(--white);
+  padding: var(--spacing);
+  height: fit-content;
+  width: fit-content;
+}
+
+.modal .modal_inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  max-width: calc(100vw - 100px);
+}
+
+.modal .modal_inner .modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing);
+  border-bottom: 2px solid rgba(51, 51, 51, 0.1);
+  padding: 0 0 var(--spacing) 0;
+  text-transform: capitalize;
+}
+.modal .modal_inner .modal_header button[data-toggle="modal"][data-target] {
+  background-color: transparent;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+}
+.modal
+  .modal_inner
+  .modal_header
+  button[data-toggle="modal"][data-target]:hover {
+  background: rgba(51, 51, 51, 0.1);
+}
+
+.modal .modal_inner .modal_body {
+  padding: var(--spacing) 0px;
+}
+
+.modal .modal_inner .modal_footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing);
+  border-top: 2px solid rgba(51, 51, 51, 0.1);
+  padding: var(--spacing) 0 0 0;
+}
+
+/* accordion ---------------- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.accordion .accordion-header button[data-toggle="accordion"] {
+  position: relative;
+  width: 100%;
+}
+.accordion .accordion-header button[data-toggle="accordion"]::after {
+  content: "<";
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  transform: rotate(-90deg);
+  transition: 0.3s linear;
+}
+.accordion.accordion_active
+  .accordion-header
+  button[data-toggle="accordion"]::after {
+  transform: rotate(90deg);
+}
+
+.accordion .accordion-body {
+  width: 100%;
+  max-height: 0vh;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: 0.2s linear;
+}
+.accordion.accordion_active .accordion-body {
+  max-height: 1000vh;
+  opacity: 1;
+  transform: scaleY(1);
+  transition: 0.2s linear;
+}
+
+/* dropdown ---------------- */
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+
+.dropdown .toggle {
+  position: relative;
+  background: var(--grey-dark);
+  color: var(--grey-light);
+  border: none;
+  padding: var(--spacing);
+  width: 10px;
+}
+.dropdown .toggle:hover {
+  color: var(--primary);
+}
+.dropdown .toggle::after {
+  content: attr(data-append);
+  position: absolute;
+  top: 0.5em;
+  right: calc(50% - 5px);
+  background: inherit;
+  color: inherit;
+  font-weight: bolder;
+  transform: rotate(-90deg);
+  transition: 0.5s ease;
+}
+.dropdown.active .toggle::after {
+  transform: rotate(90deg);
+}
+
+.dropdown .dropdown_list {
+  position: absolute;
+  top: calc(2 * var(--spacing));
+  display: flex;
+  right: 0px;
+  flex-direction: column;
+  background: var(--grey-dark);
+  color: var(--grey-light);
+  list-style: none;
+  text-transform: capitalize;
+  max-height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.2s ease;
+  z-index: 1;
+}
+.dropdown.active .dropdown_list {
+  max-height: 50vh;
+  opacity: 1;
+}
+.dropdown .dropdown_list > * {
+  font-weight: bolder;
+  white-space: nowrap;
+  margin: var(--spacing);
+}
+.dropdown .dropdown_list > *:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* for tablet and smartphone */
+@media screen and (max-width: 768px) {
+  /* custom style ---------------------- */
+  .title {
+    font-size: 1em;
+    letter-spacing: calc(var(--spacing) / 3);
+  }
+}

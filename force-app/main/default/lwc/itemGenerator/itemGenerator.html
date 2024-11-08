@@ -1,0 +1,55 @@
+<template>
+    <div class="component">
+        <h3 class="title">Item Generator</h3>
+
+        <form>
+            <div class="inner__form">
+                <div class="form_control">
+                    <label for="select_item" class="form_label"
+                        >Select Item</label
+                    >
+                    <select
+                        id="select_item"
+                        class="form_input"
+                        value={type}
+                        onchange={handleItemSelected}
+                    >
+                        <option></option>
+                        <template for:each={listTypes} for:item="itemType">
+                            <option key={itemType} value={itemType}>
+                                {itemType}
+                            </option>
+                        </template>
+                    </select>
+                </div>
+
+                <div class="form_control">
+                    <label for="select_access" class="form_label"
+                        >Select Access</label
+                    >
+                    <select
+                        id="select_access"
+                        class="form_input"
+                        value={access}
+                        onchange={handleAccessSelected}
+                    >
+                        <option></option>
+                        <template for:each={listAccesses} for:item="itemAccess">
+                            <option key={itemAccess} value={itemAccess}>
+                                {itemAccess}
+                            </option>
+                        </template>
+                    </select>
+                </div>
+
+                <button
+                    class="btn btn--primary"
+                    type="button"
+                    onclick={handleGenerateItem}
+                >
+                    Generate
+                </button>
+            </div>
+        </form>
+    </div>
+</template>
