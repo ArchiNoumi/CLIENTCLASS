@@ -9,8 +9,8 @@
         <name>ApexComponent</name>
     </types>
     <types>
-        <members>*</members>
-        <name>CustomObject</name>
+        <members>Case.KmerMarket__testedDate__c</members>
+        <name>CustomField</name>
     </types>
     <types>
         <members>*</members>
